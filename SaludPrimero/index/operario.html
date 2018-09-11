@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaludPrimero S.A</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/web.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+   <header class="header">
+      <a href="../index.html"><img src="../SaludPrimero/img/ico.jpg" height="50px" style="padding-top:3px;"></a>
+      <ul class="topnav pull-right">
+         <li><a data-toggle="pill" href="#registrar">Registrar</a></li>
+         <li><a data-toggle="pill" href="#modificar">Modificar</a></li>
+         <li><a data-toggle="pill" href="#generar">Generar Reporte</a></li>
+         <li><a data-toggle="pill" href="#operario">Operario</a></li>
+         <li class="icon">
+            <a href="javascript:void(0);" style="font-size:15px;" onclick="myFunction()">☰</a>
+         </li>
+      </ul>
+   </header>
+
+<nav id="menu">
+   <ul>
+      <li><a href="#" title="registrar-muestra">Registrar muestra medica</a></li>
+      <li><a href="#" title="modificar-eliminar">Modificar/eliminar muestra medica</a></li>
+      <li><a href="#" title="reportes">Generar reportes</a></li>
+   </ul>
+</nav>
+
+<section class="registrar">
+<div>
+<form class="registrar-examen">
+<input type="text" id="usuario"/>
+<input type="text" id="centro-medico">
+<input type="text" id="laboratorio">
+<input type="text" id="muestra">
+<input type="submit" value="Enviar">
+</form>
+</div>
+</section>
+
+<section class="modificar">
+   <h4>Modificar muestra</h4>
+</section>
+
+<section class="reportes">
+   <div>
+
+   </div>
+</section>
+   <script>
+      function myFunction() {
+          document.getElementsByClassName("topnav")[0].classList.toggle("responsive");
+      }
+   </script>
+   <script type="text/javascript" charset="utf-8">
+      $(document).ready(function(){
+
+            var socket = io.connect('localhost:3000');
+
+
+            $('#fregistrar-examen').submit(function() {
+            var usuario = $('#usuario').val();
+            var centroMedico = $('#centro-medico').val();
+            var laboratorio = $('#laboratorio').val();
+            var muestra = $('#muestra').val();
+
+            var examen = {
+               nombre: '',
+               paciente: usuario,
+               centro: centroMedico,
+               laboratorio: laboratorio,
+               muestra: muestra,
+               resultado: ''
+            };
+
+            socket.emit('nuevo examen', examen);
+
+
+            });
+            return false;
+            
+      });
+   </script>
+   <script src="/socket.io/socket.io.js"></script>
+   <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+</body>
+
+</body>
+</html>
