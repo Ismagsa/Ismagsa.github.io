@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <% include ./basic/initial %>
+</head>
+<body>
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+
+            <h1><span class="fa fa-sign-in"></span> Signup</h1>
+
+            <!-- show any messages that come back with authentication -->
+            <% if (message.length > 0) { %>
+                <div class="alert alert-danger"><%= message %></div>
+            <% } %>
+
+            <form id="npaciente" action="/signup" method="post">
+                <div class="modal-content">
+                  <div class="modal-body row">
+                      <div class="form-group input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="name" type="text" class="form-control validate" name="name" style="text-transform: capitalize;" autocomplete="off" required>
+                        <label for="name">Nombre</label>
+                      </div>
+                      <div class="form-group input-field col s6">
+                        <input id="last" type="text" class="form-control validate" name="last" style="text-transform: capitalize;" autocomplete="off" required>
+                        <label for="last">Apellido</label>
+                      </div>
+                      <div class="form-group input-field col s12">
+                        <i class="material-icons prefix">perm_identity</i>
+                        <input id="cedula" type="text" class="form-control validate" length="10" name="ci" pattern="^0[4-9]{1}[0-9]{8}$" 
+                        title="Oh no! Comienza con 0 y no contiene letras!" autocomplete="off" required>
+                        <label for="cedula" data-error="wrong" data-success="right">Cedula</label>
+                      </div>
+                      <div class="form-group input-field col s12">
+                        <i class="material-icons prefix">email</i>
+                        <input id="email" type="email" class="validate form-control" name="email" autocomplete="off" required>
+                        <label for="email" data-error="wrong" data-success="right">Correo</label>
+                      </div>
+                      <div class="form-group input-field col s12">
+                        <i class="material-icons prefix">business</i>
+                        <input type="text" class="form-control validate" name="address" autocomplete="off">
+                        <label for="address">Direccion</label>
+                      </div>
+                      <div class="form-group input-field col s12">
+                        <i class="material-icons prefix">phone</i>
+                        <input id="phone" type="text" class="form-control validate" name="phone" length="10" pattern="^09[0-9]{8}$" 
+                        title="Hmmm! Comparalo con tu numero de celular!" autocomplete="off">
+                        <label for="phone" data-error="wrong" data-success="right">Telefono</label>
+                      </div>
+                      <div class="form-group input-field col s12">
+                        <input type="text" class="form-control validate" name="type" autocomplete="off">
+                      </div>
+                      <div class="form-group col s4">
+                        <input type="password" class="form-control" name="password" value="Default">
+                      </div>
+                  </div>
+                </div>
+                <div class="row modal-footer" style="padding-top:15px">
+                  <button type="reset" class="btn btn-default col s4 right #d81b60 pink darken-1" style="margin-right:50px" onclick="$('#post').closeModal()">Cancelar</button>
+                  <button type="submit" class="btn btn-primary col s4 left" style="margin-left:50px" ng-click="agregar()">Crear</button>
+                </div>
+              </form>
+
+            <hr>
+
+            <p>Already have an account? <a href="/login">Login</a></p>
+            <p>Or go <a href="/">home</a>.</p>
+
+        </div>
+    </div>
+    <% include ./basic/footer %>
+</body>
+</html>

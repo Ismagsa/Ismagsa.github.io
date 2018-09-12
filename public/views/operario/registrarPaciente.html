@@ -1,0 +1,159 @@
+<div id="breadcrumbs-wrapper" class=" grey lighten-3">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <h5 class="breadcrumbs-title">Administrador de Pacientes</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col s11">
+      <p class="caption left" style="font-size: 1rem;">Hola Operador! En esta seccion eres capaz de administrar los pacientes. Desde agregar uno nuevo hasta eliminar el que menos te agrade ;) 
+      Obviamente, te recomiendo no hacer lo ultimo, al menos que realmente quieras perder tu trabajo.</p>
+    </div>
+    <div class="col s1" style="padding-top:20px">
+      <a id="addpaciente" onclick="$('#post').openModal();" class="btn-floating left btn-large waves-effect waves-light red">
+        <i class="material-icons">add</i>
+      </a>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <table id="mytable" class="table z-depth-2 table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>nombre</th>
+        <th>correo</th>
+        <th>cedula</th>
+        <th>direccion</th>
+        <th>telefono</th>
+        <th style="visibility:hidden">editar</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>nombre</th>
+        <th>correo</th>
+        <th>cedula</th>
+        <th>direccion</th>
+        <th>telefono</th>
+        <th style="visibility:hidden">editar</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<!-- Modal Structure -->
+<div id="post" class="modal modal-fixed-footer">
+  <form id="npaciente" action="/signup" method="post">
+    <div class="modal-content">
+      <div class="modal-body row">
+          <div class="form-group input-field col s6">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="name" type="text" class="form-control validate" name="name" style="text-transform: capitalize;" autocomplete="off" required>
+            <label for="name">Nombre</label>
+          </div>
+          <div class="form-group input-field col s6">
+            <input id="last" type="text" class="form-control validate" name="last" style="text-transform: capitalize;" autocomplete="off" required>
+            <label for="last">Apellido</label>
+          </div>
+          <div class="form-group input-field col s12">
+            <i class="material-icons prefix">perm_identity</i>
+            <input id="cedula" type="text" class="form-control validate" length="10" name="ci" pattern="^0[4-9]{1}[0-9]{8}$" 
+            title="Oh no! Comienza con 0 y no contiene letras!" autocomplete="off" required>
+            <label for="cedula" data-error="wrong" data-success="right">Cedula</label>
+          </div>
+          <div class="form-group input-field col s12">
+            <i class="material-icons prefix">email</i>
+            <input id="email" type="email" class="validate form-control" name="email" autocomplete="off" required>
+            <label for="email" data-error="wrong" data-success="right">Correo</label>
+          </div>
+          <div class="form-group input-field col s12">
+            <i class="material-icons prefix">business</i>
+            <input type="text" class="form-control validate" name="address" autocomplete="off">
+            <label for="address">Direccion</label>
+          </div>
+          <div class="form-group input-field col s12">
+            <i class="material-icons prefix">phone</i>
+            <input id="phone" type="text" class="form-control validate" name="phone" length="10" pattern="^09[0-9]{8}$" 
+            title="Hmmm! Comparalo con tu numero de celular!" autocomplete="off">
+            <label for="phone" data-error="wrong" data-success="right">Telefono</label>
+          </div>
+          <div class="form-group col s6" style="display:none">
+            <input type="text" class="form-control" name="type" value="paciente">
+          </div>
+          <div class="form-group col s6" style="display:none">
+            <input type="password" class="form-control" name="password" value="Default">
+          </div>
+      </div>
+    </div>
+    <div class="row modal-footer" style="padding-top:15px">
+      <button type="reset" class="btn btn-default col s4 right #d81b60 pink darken-1" style="margin-right:50px" onclick="$('#post').closeModal()">Cancelar</button>
+      <button type="submit" class="btn btn-primary col s4 left" style="margin-left:50px" ng-click="agregar()">Crear</button>
+    </div>
+  </form>
+</div>
+
+<!-- Modal Structure -->
+<div id="edit" class="modal modal-fixed-footer">
+  <form id="epaciente">
+    <div class="modal-content">
+      <div class="modal-body row">
+          
+          <div class="form-group input-field col s6">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="name" type="text" class="form-control validate" ng-model="paciente.name" name="name" style="text-transform: capitalize;" autocomplete="off" required>
+            <label class="active" for="name" data-error="wrong" data-success="right">Nombre</label>
+          </div>
+
+          <div class="form-group input-field col s6">
+            <input id="last" type="text" class="form-control validate" ng-model="paciente.last" name="last" style="text-transform: capitalize;" autocomplete="off" required>
+            <label class="active" for="last" data-error="wrong" data-success="right">Apellido</label>
+          </div>
+
+          <div class="form-group input-field col s12">
+            <i class="material-icons prefix">perm_identity</i>
+            <input id="cedula" type="text" class="form-control validate" length="10" ng-model="paciente.info.ci" name="ci" pattern="^0[4-9]{1}[0-9]{8}$" title="Oh no! Comienza con 0 y no contiene letras!" autocomplete="off" required>
+            <label class="active" for="cedula" data-error="wrong" data-success="right">Cedula</label>
+          </div>
+
+          <div class="form-group input-field col s12">
+            <i class="material-icons prefix">email</i>
+            <input id="email" type="email" class="validate form-control" ng-model="paciente.local.email" name="email" autocomplete="off" required>
+            <label class="active" for="email" data-error="wrong" data-success="right">Correo</label>
+          </div>
+
+          <div class="form-group input-field col s12">
+            <i class="material-icons prefix">business</i>
+            <input id="address" type="text" class="form-control validate" ng-model="paciente.info.address" name="address" autocomplete="off">
+            <label class="active" for="address" data-error="wrong" data-success="right">Direccion</label>
+          </div>
+
+          <div class="form-group input-field col s12">
+            <i class="material-icons prefix">phone</i>
+            <input id="phone" type="text" class="form-control validate" ng-model="paciente.info.phone" name="phone" length="10" pattern="^09[0-9]{8}$" title="Hmmm! Comparalo con tu numero de celular!" autocomplete="off">
+            <label class="active" for="phone" data-error="wrong" data-success="right">Telefono</label>
+          </div>
+
+          <div class="form-group col s4" style="display:none">
+            <input type="password" class="form-control" name="password" value="Default">
+          </div>
+
+      </div>
+    </div>
+    <div class="row modal-footer">
+      <button type="submit" style="margin:10px 0px 0px 12px" class="btn btn-primary col s4 left" ng-click="putPaciente()">Aceptar</button>
+      <div class="col s2">
+        <a id="addpaciente" ng-click="killPaciente()" style="margin-right:-25px" class="btn-floating btn-large waves-effect waves-light red">
+          <i class="material-icons">delete</i>
+        </a>
+      </div>
+      <button style="margin:10px 12px 0px 0px" class="btn btn-default col s4 right #d81b60 pink darken-1" onclick="$('#edit').closeModal()">Cancelar</button>
+    </div>
+  </form>
+</div>

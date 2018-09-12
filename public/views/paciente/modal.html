@@ -1,0 +1,31 @@
+<div class="col-sm-6 col-sm-offset-3">
+      <h1><span class="fa fa-sign-in"></span> Add a Building</h1>
+
+      <form id="nbuilding" action="/building" method="post">
+          <div class="modal-content">
+            <div class="modal-body row">
+                <div class="form-group input-field col s6">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input id="name" type="text" class="form-control validate" name="name" style="text-transform: capitalize;" autocomplete="off" required>
+                  <label for="name">Nombre</label>
+                </div>
+                <div class="form-group input-field col s6">
+                  <input id="type" type="text" class="form-control validate" name="type" style="text-transform: capitalize;" autocomplete="off" required>
+                  <label for="type">Tipo</label>
+                </div>
+                <div class="form-group input-field col s12">
+                  <i class="material-icons prefix">perm_identity</i>
+                  <input id="description" type="text" class="form-control validate" name="description" autocomplete="off" required>
+                  <label for="description">Descripcion</label>
+                </div>
+            </div>
+          </div>
+          <div class="row modal-footer" style="padding-top:15px">
+            <button type="reset" class="btn btn-default col s4 right #d81b60 pink darken-1" style="margin-right:50px" onclick="$('#post').closeModal()">Cancelar</button>
+            <button type="submit" class="btn btn-primary col s4 left" style="margin-left:50px">Crear</button>
+          </div>
+        </form>
+
+      <hr>
+
+      <p>go <a href="/">home</a>.</p>

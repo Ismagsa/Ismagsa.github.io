@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Laboratorista</title>
+        <% include ../basic/initial %>
+        <script type="text/javascript" src="javascripts/angular/laboratorist.js"></script>
+    </head>
+	<body ng-app="appLaboratorist">
+
+	<!-- Start Page Loading -->
+  <div id="loader-wrapper">
+      <div id="loader"></div>        
+      <div class="loader-section section-left"></div>
+      <div class="loader-section section-right"></div>
+  </div>
+
+    <!-- Side Nav -->
+	<ul id="slide-out" class="side-nav fixed">
+  	<li class="userView" style="margin-right:-25px;margin-left:-15px">
+      <div class="row">
+          <img class="background" src="images/user-bg.jpg" style="height:100%;width:100%">
+          <div class="col s12">
+            <a><img src="images/1.jpg" class="circle left"></a>
+            <ul id="profile-dropdown" class="dropdown-content" style="padding-top:0px;margin-top:58px;margin-left:15px">
+              <li><a><i class="material-icons">person_pin</i><a  href="/profile" style="padding-top:15px">Profile</a></a></li>
+                    <li><a href="#"><i class="material-icons">live_help</i><a style="padding-top:15px">Help</a></a></li>
+                </ul>
+                <a style="font-size:0.8em" class="btn-flat dropdown-button waves-effect waves-light white-text right" data-activates="profile-dropdown"><%= user.name %> <%= user.last %>
+                <i class="material-icons right">settings</i></a>
+                </div>
+            <div class="col s12">
+        <a><span class="white-text name"><%= user.local.email %></span></a>
+        <a><span class="white-text email"><%= user.type %></span></a>
+      </div>
+      </div>
+    </li>
+  	<li><a class="bold waves-effect" ui-sref="RegistrarPaciente"><i class="material-icons">input</i>Examenes Medicos</a></li>
+  	<li><a class="waves-effect" href="/logout"><i class="material-icons">power_settings_new</i>Salir</a></li>
+	</ul>
+
+	<main>
+    <!-- Fancy -->
+    <nav class="cyan">
+        <div class="nav-wrapper row">
+          <a data-activates="slide-out" class="col s4 button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#" class="col s8 brand-logo white-text left">Salud Primero <img src="images/favicon.ico" style="height:17px"></a>
+        </div></nav>
+
+    <div>
+      <ui-view></ui-view>
+    </div>
+
+  </main>
+  
+	<% include ../basic/footer %>
+    </body>
+</html>

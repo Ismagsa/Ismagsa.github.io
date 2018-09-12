@@ -1,0 +1,205 @@
+<div id="breadcrumbs-wrapper" class=" grey lighten-3">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <h5 class="breadcrumbs-title">Administrador de Muestras Medicas</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col s11">
+      <p class="caption left" style="font-size: 1rem;">Bien Operador! En esta seccion eres capaz de administrar las muestras de un paciente. Eso es todo. fin.</p>
+    </div>
+    <div class="col s1" style="padding-top:20px">
+      <a id="addMuestra" ng-click="openNew()" class="btn-floating left btn-large waves-effect waves-light red">
+        <i class="material-icons">add</i>
+      </a>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <table id="mytable" class="table z-depth-2 table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>tipo</th>
+        <th>codigo</th>
+        <th>paciente</th>
+        <th>fecha</th>
+        <th>examenes</th>
+        <th>estado</th>
+        <th style="visibility:hidden">editar</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>tipo</th>
+        <th>codigo</th>
+        <th>paciente</th>
+        <th>fecha</th>
+        <th>examenes</th>
+        <th>estado</th>
+        <th style="visibility:hidden">editar</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<!-- Modal Structure -->
+<div id="post" class="modal modal-fixed-footer">
+  <form id="nmuestra">
+    <div class="modal-content" style="margin-top:-10px">
+      <div class="modal-body row">
+          <div class="form-group input-field col s4">
+            <input id="fecha2" type="text" class="form-control validate" ng-model="sample.date" autocomplete="off" disabled selected>
+            <label class="active" for="Fecha">Fecha</label>
+          </div>
+          <div class="form-group input-field right col s4">
+            <input id="codigo2" type="text" class="form-control validate" ng-model="sample.code" autocomplete="off" disabled selected>
+            <label class="active" for="codigo">Codigo</label>
+          </div>
+
+          <div class="form-group input-field col s12" style="margin-top:-2px">
+            <i class="material-icons prefix">account_circle</i>
+            <input type="text" class="form-control autocomplete validate" autocomplete="off" id="autocomplete-input" required>
+            <label for="autocomplete-input">Nombre</label>
+          </div>
+
+          <div class="col 12" style="margin-bottom:10px"></div>
+          <div class="input-field col s12" style="margin-bottom:-20px">
+            <a ng-click="openHeces()" class="waves-effect tiny waves-light btn right"><i class="material-icons right">add_alert</i>Heces</a>
+            <a ng-click="openOrina()" class="waves-effect waves-light btn right" style="margin-right:15px"><i class="material-icons right">invert_colors</i>Orina</a>
+            <a ng-click="openSangre()" class="waves-effect waves-light btn active right" style="margin-right:15px"><i class="material-icons right">done</i>Sangre</a>
+          </div>
+          <div class="col s12"></div>
+            <div id="sangre" class="input-field col s12">
+              <p class="col s4 center-align">
+                <input type="checkbox" class="filled-in" id="test1" checked="checked"/>
+                <label for="test1">Hemograma</label>
+              </p>
+              <p class="col s4 center-align">
+                <input type="checkbox" class="filled-in" id="test2" />
+                <label for="test2">Bioquimica</label>
+              </p>
+              <p class="col s4 center-align">
+                <input type="checkbox" class="filled-in" id="test3" />
+                <label for="test3">Serologia</label>
+              </p>
+            </div>
+            <div id="orina" style="display:none" class="input-field col s12">
+              <p class="col s12 center-align">
+                <input type="checkbox" class="filled-in" id="test4" checked="checked" disabled />
+                <label for="test4">Urologia</label>
+              </p>
+            </div>
+            <div id="heces" style="display:none" class="input-field col s12">
+              <p class="col s12 center-align">
+                <input type="checkbox" class="filled-in" id="test5" checked="checked" disabled/>
+                <label for="test5">Coprocultivo</label>
+              </p>
+            </div>
+          <div class="col 12" style="margin-bottom:10px"></div>
+          <div class="form-group input-field col s5">
+            <i class="material-icons prefix">business</i>
+            <input ng-model="sample.medic" id="medic" type="text" class="validate form-control" name="medic" autocomplete="off" required>
+            <label for="medic">Centro Medico</label>
+          </div>
+
+          <div class="form-group input-field col s5">
+            <i class="material-icons prefix">recent_actors</i>
+            <input id="autocomplete-lab" type="text" class="form-control lab validate" name="autocomplete-lab" autocomplete="off" required>
+            <label for="lab">Laboratorio</label>
+          </div>
+
+      </div>
+    </div>
+    <div class="row modal-footer" style="padding-top:15px">
+      <button type="button" class="btn btn-default col s4 right #d81b60 pink darken-1" style="margin-right:50px" onclick="$('#post').closeModal()">Cancelar</button>
+      <button type="submit" class="btn btn-primary col s4 left" style="margin-left:50px" ng-click="addSample()">Crear</button>
+    </div>
+  </form>
+</div>
+
+<!-- Modal Structure -->
+<div id="edit" class="modal modal-fixed-footer">
+  <form id="epaciente">
+    <div class="modal-content" style="margin-top:-10px">
+      <div class="modal-body row">
+          <div class="form-group input-field col s4">
+            <input id="fecha" type="text" class="form-control validate" ng-model="sample.date" autocomplete="off" disabled selected>
+            <label class="active" for="Fecha">Fecha</label>
+          </div>
+          <div class="form-group input-field right col s4">
+            <input id="codigo" type="text" class="form-control validate" ng-model="sample.code" autocomplete="off" disabled selected>
+            <label class="active" for="codigo">Codigo</label>
+          </div>
+
+          <div class="form-group input-field col s12" style="margin-top:-2px">
+            <i class="material-icons prefix">account_circle</i>
+            <input type="text" class="form-control autocomplete validate" ng-model="sample.id" autocomplete="off" id="edit-input" required>
+            <label class="active" for="edit-input">Nombre</label>
+          </div>
+
+          <div class="col 12" style="margin-bottom:10px"></div>
+          <div class="input-field col s12" style="margin-bottom:-20px">
+            <a ng-click="openHeces()" class="waves-effect tiny waves-light btn right"><i class="material-icons right">add_alert</i>Heces</a>
+            <a ng-click="openOrina()" class="waves-effect waves-light btn right" style="margin-right:15px"><i class="material-icons right">invert_colors</i>Orina</a>
+            <a ng-click="openSangre()" class="waves-effect waves-light btn active right" style="margin-right:15px"><i class="material-icons right">done</i>Sangre</a>
+          </div>
+          <div class="col s12"></div>
+            <div id="blood" class="input-field col s12">
+              <p class="col s4 center-align">
+                <input type="checkbox" class="filled-in" id="edit1"/>
+                <label for="edit1">Hemograma</label>
+              </p>
+              <p class="col s4 center-align">
+                <input type="checkbox" class="filled-in" id="edit2" />
+                <label for="edit2">Bioquimica</label>
+              </p>
+              <p class="col s4 center-align">
+                <input type="checkbox" class="filled-in" id="edit3" />
+                <label for="edit3">Serologia</label>
+              </p>
+            </div>
+            <div id="pee" style="display:none" class="input-field col s12">
+              <p class="col s12 center-align">
+                <input type="checkbox" class="filled-in" id="edit4" checked="checked" disabled />
+                <label for="edit4">Urologia</label>
+              </p>
+            </div>
+            <div id="poo" style="display:none" class="input-field col s12">
+              <p class="col s12 center-align">
+                <input type="checkbox" class="filled-in" id="edit5" checked="checked" disabled/>
+                <label for="edit5">Coprocultivo</label>
+              </p>
+            </div>
+          <div class="col 12" style="margin-bottom:10px"></div>
+          <div class="form-group input-field col s5">
+            <i class="material-icons prefix">business</i>
+            <input ng-model="sample.medic" id="medic2" type="text" class="validate form-control" name="medic" autocomplete="off" required>
+            <label class="active" for="medic2">Centro Medico</label>
+          </div>
+
+          <div class="form-group input-field col s5">
+            <i class="material-icons prefix">recent_actors</i>
+            <input ng-model="sample.lab" id="lab2" type="text" class="form-control lab validate" name="lab" autocomplete="off" required>
+            <label class="active" for="lab2">Laboratorio</label>
+          </div>
+
+      </div>
+    </div>
+    <div class="row modal-footer">
+      <button type="submit" style="margin:10px 0px 0px 12px" class="btn btn-primary col s4 left" ng-click="putSample()">Aceptar</button>
+      <div class="col s2">
+        <a id="killSample" ng-click="killSample()" style="margin-right:-25px" class="btn-floating btn-large waves-effect waves-light red">
+          <i class="material-icons">delete</i>
+        </a>
+      </div>
+      <button style="margin:10px 12px 0px 0px" class="btn btn-default col s4 right #d81b60 pink darken-1" onclick="$('#edit').closeModal()">Cancelar</button>
+    </div>
+  </form>
+</div>

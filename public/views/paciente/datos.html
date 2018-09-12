@@ -1,0 +1,79 @@
+<div id="breadcrumbs-wrapper" class=" grey lighten-3">
+  <div class="section">
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <h5 class="breadcrumbs-title">Actualiza tus Datos</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col s11">
+      <p class="caption left" style="font-size: 1rem;">Por motivos de seguridad no puedes cambiar tu correo aqui. Para hacerlo desbes de acercarte a uno de nuestros centros medicos. Y! Exactamente como lo dice el titulo, no hay mas que decir. Bueno si, no espera, olvidalo.</p>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+<div id="edit" class="">
+  <form id="epaciente">
+    <div class="content">
+      <div class="body row">
+          
+          <div class="form-group input-field col s6">
+            <i class="material-icons prefix">account_circle</i>
+            <input id="name" type="text" class="form-control validate" ng-model="paciente.name" name="name" style="text-transform: capitalize;" autocomplete="off" required>
+            <label class="active" for="name" data-error="wrong" data-success="right">Nombre</label>
+          </div>
+
+          <div class="form-group input-field col s6">
+            <input id="last" type="text" class="form-control validate" ng-model="paciente.last" name="last" style="text-transform: capitalize;" autocomplete="off" required>
+            <label class="active" for="last" data-error="wrong" data-success="right">Apellido</label>
+          </div>
+
+          <div class="form-group input-field col s12">
+            <i class="material-icons prefix">perm_identity</i>
+            <input id="cedula" type="text" class="form-control validate" length="10" ng-model="paciente.info.ci" name="ci" pattern="^0[4-9]{1}[0-9]{8}$" title="Oh no! Comienza con 0 y no contiene letras!" autocomplete="off" required>
+            <label class="active" for="cedula" data-error="wrong" data-success="right">Cedula</label>
+          </div>
+
+          <div class="form-group input-field col s12">
+            <i class="material-icons prefix">business</i>
+            <input id="address" type="text" class="form-control validate" ng-model="paciente.info.address" name="address" autocomplete="off">
+            <label class="active" for="address" data-error="wrong" data-success="right">Direccion</label>
+          </div>
+
+          <div class="form-group input-field col s12">
+            <i class="material-icons prefix">phone</i>
+            <input id="phone" type="text" class="form-control validate" ng-model="paciente.info.phone" name="phone" length="10" pattern="^09[0-9]{8}$" title="Hmmm! Comparalo con tu numero de celular!" autocomplete="off">
+            <label class="active" for="phone" data-error="wrong" data-success="right">Telefono</label>
+          </div>
+
+          <div class="form-group input-field col s12">
+            <i class="material-icons prefix">email</i>
+            <input id="email" type="email" class="validate form-control" ng-model="paciente.local.email" name="email" autocomplete="off" required>
+            <label class="active" for="email" data-error="wrong" data-success="right">Correo</label>
+          </div>
+
+          <div class="form-group input-field col s6">
+            <i class="material-icons prefix">vpn_key</i>
+            <input type="password" placeholder="Password" id="password" name="password" required>
+            <label class="active" for="password" data-error="wrong" data-success="right">Contraseña</label>
+          </div>
+          
+          <div class="form-group input-field col s6">
+            <input type="password" placeholder="Confirm Password" id="confirm_password" name="confirm_password" required>
+            <label class="active" for="password" data-error="wrong" data-success="right">Contraseña</label>
+          </div>
+
+      </div>
+    </div>
+    <div class="row modal-footer">
+      <button type="submit" style="margin:10px 0px 0px 12px" class="btn btn-primary col s4 left" ng-click="putPaciente()">Aceptar</button>
+      <div class="col s2">
+      </div>
+      <button  type="reset"  style="margin:10px 12px 0px 0px" class="btn btn-default col s4 right #d81b60 pink darken-1">Cancelar</button>
+    </div>
+  </form>
+</div>
